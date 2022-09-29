@@ -4,9 +4,6 @@ import {Routes, Route} from 'react-router-dom'
 import Navbar from './Navbar';
 import { Login } from "./Login";
 import { Register } from "./Register";
-<<<<<<< HEAD
-import Navbar from './Navbar';
-=======
 import DashBoard from './DashBoard';
 import Secteur from '../Pages/Secteur';
 import Catalogue from '../Pages/Catalogue';
@@ -14,7 +11,6 @@ import Formation from '../Pages/Formation';
 import Commande from '../Pages/Commande';
 import Vente from '../Pages/Vente';
 import Calendrier from '../Pages/Calendrier';
->>>>>>> 09aa44a9fdd60aec1a58c91d915c263f1bef034d
 
 function App() {
   const [currentForm, setCurrentForm] = useState('login');
