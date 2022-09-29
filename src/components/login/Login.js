@@ -1,27 +1,24 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import '../../styles/login.css'
+
+
 export const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    /**const handleSubmit = (e) => {
-    e.preventDefault();
-    const blog = { title, body, author };
-
-    fetch('http://localhost:8000/blogs/', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(blog)
-    }).then(() => {
-      // history.go(-1);
-      history.push('/');
-    })
-  } */
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        return {email,password}
+        const datas = {email, password}
+        const res = await axios.post(`http://127.0.0.1:8000/api/users/login`)
+        if(res.data.status === 200){
+          console.log('ok')
+        }
+        else{
+          console.error('oups')
+        }
     }
+
     return (
       <div className="form">
         <div className="auth-form-container">
