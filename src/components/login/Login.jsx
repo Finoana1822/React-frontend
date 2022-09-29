@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import '../../styles/login.css'
@@ -24,7 +25,7 @@ export const Login = (props) => {
         <div className="auth-form-container">
             <h2>Se connecter</h2>
             <form className="login-form" onSubmit={handleSubmit}>
-                <label>Email</label>
+                <label>Email<FontAwesomeIcon icon={["fal", "coffee"]} /></label>
                 <input 
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)}
