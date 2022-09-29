@@ -1,5 +1,6 @@
 import esti from '../assets/esti.png'
 import { NavLink } from 'react-router-dom';
+import "../styles/navbar.css";
 
 const Navbar = () => {
     return (
@@ -8,7 +9,7 @@ const Navbar = () => {
                 <div className="logo">
                     <img src= { esti } alt="esti" />
                 </div>
-                <i class="fa-solid fa-chevrons-left"></i>
+                <i className="fa-solid fa-chevrons-left"></i>
            </header>
 
            <div className="menu-bar">
