@@ -1,4 +1,4 @@
-const Secteur = () => {
+const CoutSecteur = () => {
     return (  
         <div>
             <h2>Secteur</h2>
@@ -6,4 +6,4 @@ const Secteur = () => {
     );
 }
  
-export default Secteur;
+export default CoutSecteur;
