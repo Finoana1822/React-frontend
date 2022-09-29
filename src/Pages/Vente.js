@@ -1,5 +1,11 @@
+import React from 'react';
+
 const Vente = () => {
-    return
-}
- 
+    return (
+        <div>
+Vente
+        </div>
+    );
+};
+
 export default Vente;

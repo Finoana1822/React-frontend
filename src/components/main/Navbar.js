@@ -1,6 +1,6 @@
-import esti from '../assets/esti.png'
+import esti from '../../assets/img/esti.png'
 import { NavLink } from 'react-router-dom';
-import "../styles/navbar.css";
+import "../../styles/navbar.css";
 
 const Navbar = () => {
     return (

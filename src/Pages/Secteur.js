@@ -1,5 +1,11 @@
+import React from 'react';
+
 const Secteur = () => {
-    return
-}
- 
+    return (
+        <div>
+            Secteur
+        </div>
+    );
+};
+
 export default Secteur;
