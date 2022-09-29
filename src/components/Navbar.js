@@ -1,4 +1,6 @@
 import esti from '../assets/esti.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     return (
@@ -13,58 +15,57 @@ const Navbar = () => {
            <div className="menu-bar">
                 <div className="menu">
                     <li className="search-box">
-                        {/*fontawesome*/}
-                        <input type="text" placeholder='Search ...'/>
+                        <h2>Gestion FC</h2>
                     </li>
 
                     <ul className="menu-links">
                         <li className="nav-link">
-                            <a href="">
                                 {/*fontawesome*/}
-                                <span className="nav-text">Accueil</span>
-                            </a>
+                            <NavLink to = "" className = {(nav) => nav.isActive ? "active" : ""}>
+                                <span className="nav-text">Dash Board</span>
+                            </NavLink>
                         </li>
 
                         <li className="nav-link">
-                            <a href="">
                                 {/*fontawesome*/}
+                            <NavLink to = "" className = {(nav) => nav.isActive ? "active" : ""}>
                                 <span className="nav-text">Secteur</span>
-                            </a>
+                            </NavLink>
                         </li>
 
                         <li className="nav-link">
-                            <a href="">
                                 {/*fontawesome*/}
+                            <NavLink to = "" className = {(nav) => nav.isActive ? "active" : ""}>
                                 <span className="nav-text">Catalogue</span>
-                            </a>
+                            </NavLink>
                         </li>
 
                         <li className="nav-link">
-                            <a href="">
                                 {/*fontawesome*/}
+                            <NavLink to = "" className = {(nav) => nav.isActive ? "active" : ""}>
                                 <span className="nav-text">Formation</span>
-                            </a>
+                            </NavLink>
                         </li>
 
                         <li className="nav-link">
-                            <a href="">
                                 {/*fontawesome*/}
-                                <span className="nav-text">Vente</span>
-                            </a>
-                        </li>
-
-                        <li className="nav-link">
-                            <a href="">
-                                {/*fontawesome*/}
+                            <NavLink to = "" className = {(nav) => nav.isActive ? "active" : ""}>
                                 <span className="nav-text">Commande</span>
-                            </a>
+                            </NavLink>
                         </li>
 
                         <li className="nav-link">
-                            <a href="">
                                 {/*fontawesome*/}
-                                <span className="nav-text">Statistique</span>
-                            </a>
+                            <NavLink to = "" className = {(nav) => nav.isActive ? "active" : ""}>
+                                <span className="nav-text">Vente</span>
+                            </NavLink>
+                        </li>
+
+                        <li className="nav-link">
+                                {/*fontawesome*/}
+                            <NavLink to = "" className = {(nav) => nav.isActive ? "active" : ""}>
+                                <span className="nav-text">Calendrier</span>
+                            </NavLink>
                         </li>
                     </ul>
                 </div>
