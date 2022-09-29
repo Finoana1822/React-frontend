@@ -4,7 +4,7 @@ import {Routes, Route} from 'react-router-dom'
 import { Login } from "./Login";
 import { Register } from "./Register";
 import Navbar from './Navbar';
-import '../../node_modules/font-awesome/css/font-awesome.css'
+import Secteur from './Secteur';
 
 function App() {
   const [currentForm, setCurrentForm] = useState('login');
@@ -18,6 +18,7 @@ function App() {
       <Routes>
           <Route path='/' element = { currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />} />
           <Route path='/acceuil' element = {<Navbar />} />
+          <Route path='/secteur' element = {<Secteur />} />
       </Routes>
     </div>
   );

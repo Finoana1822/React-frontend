@@ -1,4 +1,5 @@
 import esti from '../assets/esti.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Navbar = () => {
     return (
@@ -13,14 +14,13 @@ const Navbar = () => {
            <div className="menu-bar">
                 <div className="menu">
                     <li className="search-box">
-                        {/*fontawesome*/}
-                        <input type="text" placeholder='Search ...'/>
+                        <h2>Gestion FC</h2>
                     </li>
 
                     <ul className="menu-links">
                         <li className="nav-link">
                             <a href="">
-                                {/*fontawesome*/}
+                                <FontAwesomeIcon icon="fa-solid fa-house" />
                                 <span className="nav-text">Accueil</span>
                             </a>
                         </li>
