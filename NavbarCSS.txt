@@ -1,0 +1,70 @@
+/* Navbar */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background: var(--sidebar-color);
+    transition: var(--tran-05);
+    z-index: 100;
+    background-color: white;
+}
+
+.sidebar.close{
+    width: 88px;
+}
+
+.logo {
+    position: relative;
+    top: 25px;
+}
+
+.logo img {
+    width: 100px;
+}
+
+.sidebar header {
+    position: relative;
+}
+
+.sidebar li {
+    height: 50px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.sidebar .menu {
+    margin-top: 40px;
+}
+
+.sidebar .search-box h2 {
+    width: 200%;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: rgb(104, 181, 204);
+    color: white;
+}
+
+.sidebar li a {
+    list-style: none;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    text-decoration: none;
+    color: gray;
+    font-size: 20px;
+}
+
+.sidebar li a:hover {
+    background-color: rgb(230, 227, 227);
+}

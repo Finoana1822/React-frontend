@@ -10,14 +10,15 @@ export const Login = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const datas = {email, password}
+        console.log(email, password);
+        /*const datas = {email, password}
         const res = await axios.post(`http://127.0.0.1:8000/api/users/login`)
         if(res.data.status === 200){
           console.log('ok')
         }
         else{
           console.error('oups')
-        }
+        }*/
     }
 
     return (
@@ -25,7 +26,6 @@ export const Login = (props) => {
         <div className="auth-form-container">
             <h2>Se connecter</h2>
             <form className="login-form" onSubmit={handleSubmit}>
-                <label>Email<FontAwesomeIcon icon={["fal", "coffee"]} /></label>
                 <input 
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)}

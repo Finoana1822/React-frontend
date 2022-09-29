@@ -1,9 +1,10 @@
 import React from 'react';
+import CatalogueForm from '../components/main/Catalogue/CatalogueForm';
 
 const Catalogue = () => {
     return (
         <div>
-            Catalogue        
+            <CatalogueForm />        
         </div>
     );
 };

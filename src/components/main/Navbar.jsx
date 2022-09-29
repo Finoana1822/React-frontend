@@ -1,77 +1,80 @@
-import esti from '../../assets/img/esti.png'
+import React, { useState } from 'react';
+import '../../styles/navbar.css'
+import {
+    FaTh,
+    FaBars,
+    FaAdversal,
+    FaCashRegister,
+    FaDev,
+    FaChartBar,
+    FaCcPaypal,
+    FaCalendar
+}from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
-import "../../styles/navbar.css";
+import esti from '../../assets/img/esti.png'
 
-const Navbar = () => {
+
+const Navbar = ({children}) => {
+    const[isOpen ,setIsOpen] = useState(false);
+    const toggle = () => setIsOpen (!isOpen);
+    const menuItem=[
+        {
+            path:"/dashboard",
+            name:"Dashboard",
+            icon:<FaTh/>
+        },
+        {
+            path:"/secteur",
+            name:"Secteur",
+            icon:<FaAdversal/>
+        },
+        {
+            path:"/catalogue",
+            name:"Catalogue",
+            icon:<FaCashRegister/>
+        },
+        {
+            path:"/formation",
+            name:"Formation",
+            icon:<FaDev/>
+        },
+        {
+            path:"/commande",
+            name:"Commande",
+            icon:<FaChartBar/>
+        },
+        {
+            path:"/vente",
+            name:"Vente",
+            icon:<FaCcPaypal/>
+        },
+        {
+            path:"/calendrier",
+            name:"Calendrier",
+            icon:<FaCalendar/>
+        }
+    ]
     return (
-        <div className='sidebar'>
-           <header>
-                <div className="logo">
-                    <img src= { esti } alt="esti" />
-                </div>
-                <i className="fa-solid fa-chevrons-left"></i>
-           </header>
-
-           <div className="menu-bar">
-                <div className="menu">
-                    <li className="search-box">
-                        <h2>Gestion FC</h2>
-                    </li>
-
-                    <ul className="menu-links">
-                        <li className="nav-link">
-                                {/*fontawesome*/}
-                            <NavLink to = "/dashboard" className = {(nav) => nav.isActive ? "active" : ""}>
-                                <span className="nav-text">Dash Board</span>
-                            </NavLink>
-                        </li>
-
-                        <li className="nav-link">
-                                {/*fontawesome*/}
-                            <NavLink to = "secteur" className = {(nav) => nav.isActive ? "active" : ""}>
-                                <span className="nav-text">Secteur</span>
-                            </NavLink>
-                        </li>
-
-                        <li className="nav-link">
-                                {/*fontawesome*/}
-                            <NavLink to = "catalogue" className = {(nav) => nav.isActive ? "active" : ""}>
-                                <span className="nav-text">Catalogue</span>
-                            </NavLink>
-                        </li>
-
-                        <li className="nav-link">
-                                {/*fontawesome*/}
-                            <NavLink to = "formation" className = {(nav) => nav.isActive ? "active" : ""}>
-                                <span className="nav-text">Formation</span>
-                            </NavLink>
-                        </li>
-
-                        <li className="nav-link">
-                                {/*fontawesome*/}
-                            <NavLink to = "commande" className = {(nav) => nav.isActive ? "active" : ""}>
-                                <span className="nav-text">Commande</span>
-                            </NavLink>
-                        </li>
-
-                        <li className="nav-link">
-                                {/*fontawesome*/}
-                            <NavLink to = "vente" className = {(nav) => nav.isActive ? "active" : ""}>
-                                <span className="nav-text">Vente</span>
-                            </NavLink>
-                        </li>
-
-                        <li className="nav-link">
-                                {/*fontawesome*/}
-                            <NavLink to = "calendrier" className = {(nav) => nav.isActive ? "active" : ""}>
-                                <span className="nav-text">Calendrier</span>
-                            </NavLink>
-                        </li>
-                    </ul>
-                </div>
+        <div className="container">
+           <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">
+               <div className="top_section">
+                   <img src= { esti } alt="logo" className='logo'/>
+                   <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">
+                       <FaBars onClick={toggle}/>
+                   </div>
+               </div>
+               {
+                   menuItem.map((item, index)=>(
+                       <NavLink to={item.path} key={index} className="link" activeclassName="active">
+                           <div className="icon">{item.icon}</div>
+                           <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
+                       </NavLink>
+                   ))
+               }
            </div>
+           <main>{children}</main>
         </div>
     );
-}
- 
+};
+
 export default Navbar;
