@@ -1,7 +1,5 @@
 const SecteurContainer = () => {
-    return (  
-        
-    );
+    return 
 }
  
 export default SecteurContainer;

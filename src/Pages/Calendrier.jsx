@@ -1,6 +1,6 @@
 import { Routes, Route, NavLink } from "react-router-dom";
-import CalendrierFormation from "../components/main/Calendrier/CalendrierFormation";
-import CalendrierProspection from "../components/main/Calendrier/CalendrierProspection";
+import CalendrierFormation from "../components/Calendrier/CalendrierFormation";
+import CalendrierProspection from "../components/Calendrier/CalendrierProspection";
 
 const Calendrier = () => {
     return (

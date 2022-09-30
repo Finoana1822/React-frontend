@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../styles/navbar.css'
+import '../styles/navbar.css'
 import {
     FaTh,
     FaBars,
@@ -11,7 +11,7 @@ import {
     FaCalendar
 }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
-import esti from '../../assets/img/esti.png'
+import esti from '../assets/esti.png'
 
 
 const Navbar = ({children}) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import CatalogueForm from '../components/main/Catalogue/CatalogueForm';
+import CatalogueForm from '../components/Catalogue/CatalogueForm';
 
 const Catalogue = () => {
     return (
