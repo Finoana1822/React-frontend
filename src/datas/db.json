@@ -1,99 +1,429 @@
 {
-  "users": [
-    {
-      "id": 1,
-      "nom": "transversale",
-      "categorie": "A",
-      "niveau": "bas",
-      "accompagnement": "basique",
-      "support": "physique",
-      "outil": "rien",
-      "logicielle": "libre",
-      "platform_spec": 0,
-      "prix_min": 32000,
-      "prix_max": 35000,
-      "created_at": "2022-09-27 10:45:47",
-      "updated_at": "2022-09-27 10:45:47",
-      "h_prix_min": "80000",
-      "h_prix_max": "87500",
-      "j_prix_min": 480000,
-      "j_prix_max": 525000
-  },
-  {
-      "id": 2,
-      "nom": "transversale",
-      "categorie": "B",
-      "niveau": "moyen",
-      "accompagnement": "moyen",
-      "support": "numerique",
-      "outil": "pc",
-      "logicielle": "libre",
-      "platform_spec": 0,
-      "prix_min": 35000,
-      "prix_max": 38000,
-      "created_at": "2022-09-27 10:47:34",
-      "updated_at": "2022-09-27 10:47:34",
-      "h_prix_min": "87500",
-      "h_prix_max": "95000",
-      "j_prix_min": 525000,
-      "j_prix_max": 570000
-  },
-  {
-      "id": 3,
-      "nom": "transversale",
-      "categorie": "B",
-      "niveau": "moyen",
-      "accompagnement": "moyen",
-      "support": "numerique",
-      "outil": "pc",
-      "logicielle": "libre",
-      "platform_spec": 0,
-      "prix_min": 35000,
-      "prix_max": 38000,
-      "created_at": "2022-09-27 10:49:20",
-      "updated_at": "2022-09-27 10:56:33",
-      "h_prix_min": "87500",
-      "h_prix_max": "95000",
-      "j_prix_min": 525000,
-      "j_prix_max": 570000
-  },
-  {
-      "id": 5,
-      "nom": "programmation",
-      "categorie": "A",
-      "niveau": "bas",
-      "accompagnement": "basique",
-      "support": "numerique",
-      "outil": "pc/connexion",
-      "logicielle": "libre",
-      "platform_spec": 0,
-      "prix_min": 40000,
-      "prix_max": 45000,
-      "created_at": "2022-09-28 18:10:21",
-      "updated_at": "2022-09-28 18:10:21",
-      "h_prix_min": "100000",
-      "h_prix_max": "112500",
-      "j_prix_min": 600000,
-      "j_prix_max": 675000
-  },
-  {
-      "id": 6,
-      "nom": "programmation",
-      "categorie": "c",
-      "niveau": "moyen",
-      "accompagnement": "moyen",
-      "support": "numerique",
-      "outil": "pc/connexion",
-      "logicielle": "libre",
-      "platform_spec": 0,
-      "prix_min": 50000,
-      "prix_max": 55000,
-      "created_at": "2022-09-28 19:19:38",
-      "updated_at": "2022-09-28 19:19:38",
-      "h_prix_min": "125000",
-      "h_prix_max": "137500",
-      "j_prix_min": 750000,
-      "j_prix_max": 825000
-  }
-  ]
+    "custommers": [{
+            "id": 1,
+            "email": "etech@gmail.com",
+            "type": "entreprise",
+            "phone": 0,
+            "created_at": "2022-10-01T07:31:43.000000Z",
+            "updated_at": "2022-10-01T07:31:43.000000Z"
+        },
+        {
+            "id": 5,
+            "email": "esti@esti.mg",
+            "type": "entreprise",
+            "phone": 340731748,
+            "created_at": "2022-10-01T07:59:38.000000Z",
+            "updated_at": "2022-10-01T07:59:38.000000Z"
+        },
+        {
+            "id": 16,
+            "email": "mario@gmail.com",
+            "type": "public",
+            "phone": 340731748,
+            "created_at": "2022-10-02T16:25:16.000000Z",
+            "updated_at": "2022-10-02T16:25:16.000000Z"
+        },
+        {
+            "id": 18,
+            "email": "esti@gmail.mg",
+            "type": "entreprise",
+            "phone": 340731748,
+            "created_at": "2022-10-02T21:04:26.000000Z",
+            "updated_at": "2022-10-02T21:04:26.000000Z"
+        },
+        {
+            "id": 19,
+            "email": "nrmada2@gmail.com",
+            "type": "public",
+            "phone": 340000000,
+            "created_at": "2022-10-03T05:09:23.000000Z",
+            "updated_at": "2022-10-03T05:09:23.000000Z"
+        },
+        {
+            "id": 20,
+            "email": "tokinirina.raharison@esti.mg",
+            "type": "public",
+            "phone": 340971940,
+            "created_at": "2022-10-03T05:45:50.000000Z",
+            "updated_at": "2022-10-03T05:45:50.000000Z"
+        },
+        {
+            "id": 21,
+            "email": "finoana@gmail.com",
+            "type": "entreprise",
+            "phone": 323456978,
+            "created_at": "2022-10-03T06:21:37.000000Z",
+            "updated_at": "2022-10-03T06:21:37.000000Z"
+        },
+        {
+            "id": 22,
+            "email": "lovamanitramario@gmail.com",
+            "type": "public",
+            "phone": 340731748,
+            "created_at": "2022-10-03T09:04:12.000000Z",
+            "updated_at": "2022-10-03T09:04:12.000000Z"
+        }
+    ],
+    "besoins": [{
+        "id": "1b",
+        "id_prospection": "",
+        "id_formation": ""
+    }],
+    "formations": [{
+            "id": 16,
+            "code": "WEB21",
+            "titre": "formation test 2",
+            "categorie": "programmation",
+            "nb_jour": 5,
+            "nb_vente": 0,
+            "nb_demande": 0,
+            "cible": "public",
+            "id_secteur": 1,
+            "created_at": "2022-09-28 14:45:42",
+            "updated_at": "2022-09-28 14:53:13",
+            "prix_min": 1920000,
+            "prix_max": 2100000,
+            "prix_affiche": 375000
+        },
+        {
+            "id": 20,
+            "code": "INF02",
+            "titre": "formation 2",
+            "categorie": "programmation",
+            "nb_jour": 0,
+            "nb_vente": 0,
+            "nb_demande": 4,
+            "cible": "entreprise",
+            "id_secteur": 1,
+            "created_at": "2022-09-28 15:57:08",
+            "updated_at": "2022-09-28 15:57:37",
+            "prix_min": 1920000,
+            "prix_max": 2100000,
+            "prix_affiche": 0
+        },
+        {
+            "id": 15,
+            "code": "WEB10",
+            "titre": "formation test",
+            "categorie": "developpement",
+            "nb_jour": 4,
+            "nb_vente": 2,
+            "nb_demande": 0,
+            "cible": "entreprise",
+            "id_secteur": 2,
+            "created_at": "2022-09-28 14:30:50",
+            "updated_at": "2022-09-28 14:30:50",
+            "prix_min": 2100000,
+            "prix_max": 2280000,
+            "prix_affiche": 326000
+        },
+        {
+            "id": 30,
+            "code": "BDD01",
+            "titre": "formation 2",
+            "categorie": "programmation",
+            "nb_jour": 4,
+            "nb_vente": 0,
+            "nb_demande": 4,
+            "cible": "public",
+            "id_secteur": 5,
+            "created_at": "2022-09-28 18:15:05",
+            "updated_at": "2022-09-28 18:15:05",
+            "prix_min": 2400000,
+            "prix_max": 2700000,
+            "prix_affiche": 386000
+        },
+        {
+            "id": 31,
+            "code": "BDD02",
+            "titre": "mysql",
+            "categorie": "programmation web",
+            "nb_jour": 5,
+            "nb_vente": 0,
+            "nb_demande": 4,
+            "cible": "entreprise",
+            "id_secteur": 6,
+            "created_at": "2022-09-28 19:22:59",
+            "updated_at": "2022-09-28 19:22:59",
+            "prix_min": 3000000,
+            "prix_max": 3300000,
+            "prix_affiche": 590000
+        }
+    ],
+    "modules": [{
+            "id": 1,
+            "designation": "python",
+            "categorie": "developpement",
+            "created_at": "2022-09-27T05:44:31.000000Z",
+            "updated_at": "2022-09-27T05:44:31.000000Z"
+        },
+        {
+            "id": 2,
+            "designation": "algorithme",
+            "categorie": "algorithme",
+            "created_at": "2022-09-27T09:12:00.000000Z",
+            "updated_at": "2022-09-28T03:54:25.000000Z"
+        },
+        {
+            "id": 4,
+            "designation": "javascript",
+            "categorie": "programmation",
+            "created_at": "2022-09-27T09:41:38.000000Z",
+            "updated_at": "2022-09-27T09:42:36.000000Z"
+        }
+    ],
+    "prospections": [{
+            "id": 1,
+            "date": "2022-04-05",
+            "cible": "E-Tech",
+            "created_at": "2022-09-27T09:59:47.000000Z",
+            "updated_at": "2022-09-27T10:00:23.000000Z"
+        },
+        {
+            "id": 3,
+            "date": "2022-04-06",
+            "cible": "ingenosia",
+            "created_at": "2022-09-27T16:35:29.000000Z",
+            "updated_at": "2022-09-27T16:35:29.000000Z"
+        },
+        {
+            "id": 4,
+            "date": "2022-05-16",
+            "cible": "ingenosia",
+            "created_at": "2022-09-27T16:36:59.000000Z",
+            "updated_at": "2022-09-27T16:36:59.000000Z"
+        },
+        {
+            "id": 5,
+            "date": "2022-04-16",
+            "cible": "ingenosia",
+            "created_at": "2022-09-27T16:37:07.000000Z",
+            "updated_at": "2022-09-27T16:37:07.000000Z"
+        },
+        {
+            "id": 9,
+            "date": "2022-05-18",
+            "cible": "netfli",
+            "created_at": "2022-09-28T04:09:59.000000Z",
+            "updated_at": "2022-09-28T04:09:59.000000Z"
+        },
+        {
+            "id": 11,
+            "date": "2022-05-18",
+            "cible": "netfli",
+            "created_at": "2022-09-28T04:11:00.000000Z",
+            "updated_at": "2022-09-28T04:11:00.000000Z"
+        },
+        {
+            "id": 12,
+            "date": "2022-05-18",
+            "cible": "ingenosia",
+            "created_at": "2022-09-28T04:17:11.000000Z",
+            "updated_at": "2022-09-28T04:17:11.000000Z"
+        },
+        {
+            "id": 13,
+            "date": "2022-12-12",
+            "cible": "esti",
+            "created_at": "2022-09-28T15:07:01.000000Z",
+            "updated_at": "2022-09-28T15:07:01.000000Z"
+        },
+        {
+            "id": 24,
+            "date": "2022-12-12",
+            "cible": "estic",
+            "created_at": "2022-09-28T15:19:07.000000Z",
+            "updated_at": "2022-09-28T15:19:07.000000Z"
+        }
+    ],
+    "secteurs": [{
+            "id": 1,
+            "nom": "transversale",
+            "categorie": "A",
+            "niveau": "bas",
+            "accompagnement": "basique",
+            "support": "physique",
+            "outil": "rien",
+            "logicielle": "libre",
+            "platform_spec": 0,
+            "prix_min": 32000,
+            "prix_max": 35000,
+            "created_at": "2022-09-27 10:45:47",
+            "updated_at": "2022-09-27 10:45:47",
+            "h_prix_min": "80000",
+            "h_prix_max": "87500",
+            "j_prix_min": 480000,
+            "j_prix_max": 525000
+        },
+        {
+            "id": 2,
+            "nom": "transversale",
+            "categorie": "B",
+            "niveau": "moyen",
+            "accompagnement": "moyen",
+            "support": "numerique",
+            "outil": "pc",
+            "logicielle": "libre",
+            "platform_spec": 0,
+            "prix_min": 35000,
+            "prix_max": 38000,
+            "created_at": "2022-09-27 10:47:34",
+            "updated_at": "2022-09-27 10:47:34",
+            "h_prix_min": "87500",
+            "h_prix_max": "95000",
+            "j_prix_min": 525000,
+            "j_prix_max": 570000
+        },
+        {
+            "id": 3,
+            "nom": "transversale",
+            "categorie": "B",
+            "niveau": "moyen",
+            "accompagnement": "moyen",
+            "support": "numerique",
+            "outil": "pc",
+            "logicielle": "libre",
+            "platform_spec": 0,
+            "prix_min": 35000,
+            "prix_max": 38000,
+            "created_at": "2022-09-27 10:49:20",
+            "updated_at": "2022-09-27 10:56:33",
+            "h_prix_min": "87500",
+            "h_prix_max": "95000",
+            "j_prix_min": 525000,
+            "j_prix_max": 570000
+        },
+        {
+            "id": 5,
+            "nom": "programmation",
+            "categorie": "A",
+            "niveau": "bas",
+            "accompagnement": "basique",
+            "support": "numerique",
+            "outil": "pc/connexion",
+            "logicielle": "libre",
+            "platform_spec": 0,
+            "prix_min": 40000,
+            "prix_max": 45000,
+            "created_at": "2022-09-28 18:10:21",
+            "updated_at": "2022-09-28 18:10:21",
+            "h_prix_min": "100000",
+            "h_prix_max": "112500",
+            "j_prix_min": 600000,
+            "j_prix_max": 675000
+        },
+        {
+            "id": 6,
+            "nom": "programmation",
+            "categorie": "c",
+            "niveau": "moyen",
+            "accompagnement": "moyen",
+            "support": "numerique",
+            "outil": "pc/connexion",
+            "logicielle": "libre",
+            "platform_spec": 0,
+            "prix_min": 50000,
+            "prix_max": 55000,
+            "created_at": "2022-09-28 19:19:38",
+            "updated_at": "2022-09-28 19:19:38",
+            "h_prix_min": "125000",
+            "h_prix_max": "137500",
+            "j_prix_min": 750000,
+            "j_prix_max": 825000
+        }
+    ],
+    "supports": [{
+            "id": 1,
+            "titre": "dynamiser vos sites avec php",
+            "description": "C'est un support de cours qui va permettre de maitriser les fondamentaux de php",
+            "type": "programmation",
+            "created_at": "2022-09-27T11:18:18.000000Z",
+            "updated_at": "2022-09-27T11:18:18.000000Z",
+            "path": "php.pdf"
+        },
+        {
+            "id": 2,
+            "titre": "dynamiser vos sites avec js",
+            "description": "voici la description de javascript",
+            "type": "programmation",
+            "created_at": "2022-09-27T11:18:40.000000Z",
+            "updated_at": "2022-09-27T11:19:31.000000Z",
+            "path": "js.pdf"
+        },
+        {
+            "id": 4,
+            "titre": "creer vos SPA avec Angular",
+            "description": "voici la description de Angular",
+            "type": "developpement",
+            "created_at": "2022-09-27T19:24:46.000000Z",
+            "updated_at": "2022-09-27T19:24:46.000000Z",
+            "path": "angular.pdf"
+        }
+    ],
+    "support-forms": [{
+        "id": "",
+        "id_formation": "",
+        "id_support": ""
+    }],
+    "users": [{
+            "id": 1,
+            "name": "Mario",
+            "email": "mario@gmail.com",
+            "role": "0",
+            "email_verified_at": null,
+            "id_custommer": 16,
+            "created_at": "2022-10-02T16:25:16.000000Z",
+            "updated_at": "2022-10-02T16:25:16.000000Z"
+        },
+        {
+            "id": 2,
+            "name": "Esti",
+            "email": "esti@gmail.mg",
+            "role": "0",
+            "email_verified_at": null,
+            "id_custommer": 18,
+            "created_at": "2022-10-02T21:04:26.000000Z",
+            "updated_at": "2022-10-02T21:04:26.000000Z"
+        },
+        {
+            "id": 3,
+            "name": "Rakoto",
+            "email": "nrmada2@gmail.com",
+            "role": "0",
+            "email_verified_at": null,
+            "id_custommer": 19,
+            "created_at": "2022-10-03T05:09:23.000000Z",
+            "updated_at": "2022-10-03T05:09:23.000000Z"
+        },
+        {
+            "id": 4,
+            "name": "mendrika",
+            "email": "tokinirina.raharison@esti.mg",
+            "role": "0",
+            "email_verified_at": null,
+            "id_custommer": 20,
+            "created_at": "2022-10-03T05:45:51.000000Z",
+            "updated_at": "2022-10-03T05:45:51.000000Z"
+        },
+        {
+            "id": 5,
+            "name": "Finona",
+            "email": "finoana@gmail.com",
+            "role": "0",
+            "email_verified_at": null,
+            "id_custommer": 21,
+            "created_at": "2022-10-03T06:21:37.000000Z",
+            "updated_at": "2022-10-03T06:21:37.000000Z"
+        },
+        {
+            "id": 6,
+            "name": "Mario",
+            "email": "lovamanitramario@gmail.com",
+            "role": "0",
+            "email_verified_at": null,
+            "id_custommer": 22,
+            "created_at": "2022-10-03T09:04:12.000000Z",
+            "updated_at": "2022-10-03T09:04:12.000000Z"
+        }
+    ]
 }
