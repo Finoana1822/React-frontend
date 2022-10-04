@@ -1,11 +1,8 @@
 import React from 'react';
 
+
 const Vente = () => {
-    return (
-        <div>
-Vente
-        </div>
-    );
+    return 
 };
 
 export default Vente;

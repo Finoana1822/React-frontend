@@ -1,11 +1,10 @@
 import React from 'react';
+import DashBoardForm from '../components/Dashboard/DashboardForm';
 
 const DashBoard = () => {
-    return (
-        <div>
-            DashBoard
-        </div>
-    );
+    return(
+        <DashBoardForm />
+    )
 };
 
 export default DashBoard;

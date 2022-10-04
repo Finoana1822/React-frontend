@@ -1,11 +1,8 @@
 import React from 'react';
 
+
 const Commande = () => {
-    return (
-        <div>
-            Commande
-        </div>
-    );
+    return 
 };
 
 export default Commande;

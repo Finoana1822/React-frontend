@@ -1,6 +1,6 @@
 import '../styles/App.css';
 import {Routes, Route, Navigate} from 'react-router-dom'
-import Navbar from './Navbar';
+//import Sidebar from './Sidebar';
 import DashBoard from '../Pages/DashBoard';
 import Secteur from '../Pages/Secteur';
 import Catalogue from '../Pages/Catalogue';
@@ -8,11 +8,13 @@ import Formation from '../Pages/Formation';
 import Commande from '../Pages/Commande';
 import Vente from '../Pages/Vente';
 import Calendrier from '../Pages/Calendrier';
+import '../styles/Sidebar.css'
+
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      {/*<Sidebar />*/}
       <Routes>
           <Route path='/' element = { <Navigate to={'/dashBoard'}/>}/>
           <Route path='/dashBoard' element = { <DashBoard/>}/>
