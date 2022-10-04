@@ -20,7 +20,7 @@ function Secteur() {
     setOpen(false);
     setFormData(initialValue)
   };
-  const url = `http://localhost:4000/secteur`
+  const url = `http://localhost:4000/secteurs`
   const columnDefs = [
     { headerName: "Secteur", field: "nom", },
     { headerName: "catégorie", field: "categorie", },
