@@ -5,7 +5,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { Grid, Button } from '@material-ui/core'
 import FormDialog from '../components/Secteur/dialog';
-const initialValue = { nom: "", categorie: "", niveau: "", accompagnement: "", support: "", outil: "", logicielle: "", platefom_spec: "", prix_min: "", prix_max: ""  }
+const initialValue = { nom: "", categorie: "", niveau: "", accompagnement: "", support: "", outil: ""}
 
 function Secteur() {
   const [gridApi, setGridApi] = useState(null)
@@ -29,10 +29,6 @@ function Secteur() {
     { headerName: "Accompagnement", field: "accompagnement" },
     { headerName: "Support", field: "support" },
     { headerName: "Outil", field: "outil", },
-    { headerName: "Logiciel", field: "logicielle", },
-    { headerName: "Plateforme", field: "platefrom_spec" },
-    { headerName: "Prix_min", field: "prix_min" },
-    { headerName: "Prix_max", field: "prix_max" },
     {
       headerName: "Actions", field: "id", cellRendererFramework: (params) => <div>
         <Button variant="outlined" color="primary" onClick={() => handleUpdate(params.data)}>Update</Button>

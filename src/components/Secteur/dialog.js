@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { TextField } from '@material-ui/core';
 
 export default function FormDialog({open,handleClose,data,onChange,handleFormSubmit}) {
- const {id,nom,categorie,niveau,accompagnement,support,outil,logicielle,plateform_spec,prix_min,prix_max}=data
+ const {id,nom,categorie,niveau,accompagnement,support,outil}=data
 
   return (
     <div>
@@ -27,10 +27,6 @@ export default function FormDialog({open,handleClose,data,onChange,handleFormSub
              <TextField id="accompagnement" value={accompagnement} onChange={e=>onChange(e)} placeholder="Enter Date of birth" label="Date of Birth" variant="outlined" margin="dense" fullWidth />
              <TextField id="support" value={support} onChange={e=>onChange(e)} placeholder="Enter name" label="Name" variant="outlined" margin="dense" fullWidth />
              <TextField id="outil" value={outil} onChange={e=>onChange(e)} placeholder="Enter email" label="Email" variant="outlined" margin="dense" fullWidth />
-             <TextField id="logicielle" value={logicielle} onChange={e=>onChange(e)} placeholder="Enter phone number" label="Phone Number" variant="outlined" margin="dense" fullWidth />
-             <TextField id="plateform_spec" value={plateform_spec} onChange={e=>onChange(e)} placeholder="Enter Date of birth" label="Date of Birth" variant="outlined" margin="dense" fullWidth />
-             <TextField id="prix_min" value={prix_min} onChange={e=>onChange(e)} placeholder="Enter name" label="Name" variant="outlined" margin="dense" fullWidth />
-             <TextField id="prix_max" value={prix_max} onChange={e=>onChange(e)} placeholder="Enter email" label="Email" variant="outlined" margin="dense" fullWidth />
          </form>
         </DialogContent>
         <DialogActions>
