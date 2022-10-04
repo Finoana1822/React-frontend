@@ -18,43 +18,43 @@ function Secteur() {
 
   const columns = [
     {
-      Header: "Name",
+      Header: "Secteur",
       accessor: "show.name",
     },
     {
-      Header: "Type",
+      Header: "Catégorie",
       accessor: "show.type",
     },
     {
-      Header: "Language",
+      Header: "Niveau",
       accessor: "show.language",
     },
     {
-      Header: "Official Site",
+      Header: "Accompagnement",
       accessor: "show.officialSite",
       Cell: ({ cell: { value } }) =>
         value ? <a href={value}>{value}</a> : "-",
     },
     {
-      Header: "Rating",
+      Header: "Support",
       accessor: "show.rating.average",
       Cell: ({ cell: { value } }) => value || "-",
     },
     {
-      Header: "Status",
+      Header: "Outils",
       accessor: "show.status",
       Filter: SelectColumnFilter,
       filter: "includes",
     },
     {
-      Header: "Premiered",
+      Header: "Logiciels",
       accessor: "show.premiered",
       // disable the filter for particular column
       disableFilters: true,
       Cell: ({ cell: { value } }) => value || "-",
     },
     {
-      Header: "Time",
+      Header: "Plateforme",
       accessor: "show.schedule.time",
       disableFilters: true,
       Cell: ({ cell: { value } }) => value || "-",
@@ -64,7 +64,7 @@ function Secteur() {
   return (
     <div className="App">
       <h1>
-        <center>React Table Demo</center>
+        <center>Secteur</center>
       </h1>
       <SecteurFrom columns={columns} data={data} />
     </div>
