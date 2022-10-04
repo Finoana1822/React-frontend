@@ -1,72 +1,126 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import SecteurFrom from "../components/Secteur/SecteurFrom";
-import { SelectColumnFilter } from "../components/Secteur/Filter";
-
-import "../styles/App.css";
+import React, { useState, useEffect } from 'react';
+import '../styles/App.css';
+import { AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import { Grid, Button } from '@material-ui/core'
+import FormDialog from '../components/Secteur/dialog';
+const initialValue = { nom: "", categorie: "", niveau: "", accompagnement: "", support: "", outil: "", logicielle: "", platefom_spec: "", prix_min: "", prix_max: ""  }
 
 function Secteur() {
-  const [data, setData] = useState([]);
+  const [gridApi, setGridApi] = useState(null)
+  const [tableData, setTableData] = useState(null)
+  const [open, setOpen] = React.useState(false);
+  const [formData, setFormData] = useState(initialValue)
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+    setFormData(initialValue)
+  };
+  const url = `http://localhost:4000/users`
+  const columnDefs = [
+    { headerName: "ID", field: "id" },
+    { headerName: "Nom", field: "nom", },
+    { headerName: "catégorie", field: "categorie", },
+    { headerName: "Niveau", field: "niveau" },
+    { headerName: "Accompagnement", field: "accompagnement" },
+    { headerName: "Support", field: "support" },
+    { headerName: "Outil", field: "outil", },
+    { headerName: "Logiciel", field: "logicielle", },
+    { headerName: "Plateforme", field: "platefrom_spec" },
+    { headerName: "Prix_min", field: "prix_min" },
+    { headerName: "Prix_max", field: "prix_max" },
+    {
+      headerName: "Actions", field: "id", cellRendererFramework: (params) => <div>
+        <Button variant="outlined" color="primary" onClick={() => handleUpdate(params.data)}>Update</Button>
+        <Button variant="outlined" color="secondary" onClick={() => handleDelete(params.value)}>Delete</Button>
+      </div>
+    }
+  ]
+  // calling getUsers function for first time 
   useEffect(() => {
-    axios("http://api.tvmaze.com/search/shows?q=girls")
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    getUsers()
+  }, [])
 
-  const columns = [
-    {
-      Header: "Secteur",
-      accessor: "show.name",
-    },
-    {
-      Header: "Catégorie",
-      accessor: "show.type",
-    },
-    {
-      Header: "Niveau",
-      accessor: "show.language",
-    },
-    {
-      Header: "Accompagnement",
-      accessor: "show.officialSite",
-      Cell: ({ cell: { value } }) =>
-        value ? <a href={value}>{value}</a> : "-",
-    },
-    {
-      Header: "Support",
-      accessor: "show.rating.average",
-      Cell: ({ cell: { value } }) => value || "-",
-    },
-    {
-      Header: "Outils",
-      accessor: "show.status",
-      Filter: SelectColumnFilter,
-      filter: "includes",
-    },
-    {
-      Header: "Logiciels",
-      accessor: "show.premiered",
-      // disable the filter for particular column
-      disableFilters: true,
-      Cell: ({ cell: { value } }) => value || "-",
-    },
-    {
-      Header: "Plateforme",
-      accessor: "show.schedule.time",
-      disableFilters: true,
-      Cell: ({ cell: { value } }) => value || "-",
-    },
-  ];
+  //fetching user data from server
+  const getUsers = () => {
+    fetch(url).then(resp => resp.json()).then(resp => setTableData(resp))
+  }
+  const onChange = (e) => {
+    const { value, id } = e.target
+    // console.log(value,id)
+    setFormData({ ...formData, [id]: value })
+  }
+  const onGridReady = (params) => {
+    setGridApi(params)
+  }
 
+  // setting update row data to form data and opening pop up window
+  const handleUpdate = (oldData) => {
+    setFormData(oldData)
+    handleClickOpen()
+  }
+  //deleting a user
+  const handleDelete = (id) => {
+    const confirm = window.confirm("Are you sure, you want to delete this row", id)
+    if (confirm) {
+      fetch(url + `/${id}`, { method: "DELETE" }).then(resp => resp.json()).then(resp => getUsers())
+
+    }
+  }
+  const handleFormSubmit = () => {
+    if (formData.id) {
+      //updating a user 
+      const confirm = window.confirm("Are you sure, you want to update this row ?")
+      confirm && fetch(url + `/${formData.id}`, {
+        method: "PUT", body: JSON.stringify(formData), headers: {
+          'content-type': "application/json"
+        }
+      }).then(resp => resp.json())
+        .then(resp => {
+          handleClose()
+          getUsers()
+
+        })
+    } else {
+      // adding new user
+      fetch(url, {
+        method: "POST", body: JSON.stringify(formData), headers: {
+          'content-type': "application/json"
+        }
+      }).then(resp => resp.json())
+        .then(resp => {
+          handleClose()
+          getUsers()
+        })
+    }
+  }
+
+  const defaultColDef = {
+    sortable: true,
+    flex: 1, filter: true,
+    floatingFilter: true
+  }
   return (
     <div className="App">
-      <h1>
-        <center>Secteur</center>
-      </h1>
-      <SecteurFrom columns={columns} data={data} />
+      <h1 align="center">React-App</h1>
+      <h3>CRUD Operation with Json-server in ag-Grid</h3>
+      <Grid align="right">
+        <Button variant="contained" color="primary" onClick={handleClickOpen}>Add user</Button>
+      </Grid>
+      <div className="ag-theme-alpine" style={{ height: '400px' }}>
+        <AgGridReact
+          rowData={tableData}
+          columnDefs={columnDefs}
+          defaultColDef={defaultColDef}
+          onGridReady={onGridReady}
+        />
+      </div>
+      <FormDialog open={open} handleClose={handleClose}
+        data={formData} onChange={onChange} handleFormSubmit={handleFormSubmit} />
     </div>
   );
 }
