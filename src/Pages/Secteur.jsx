@@ -5,7 +5,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { Grid, Button } from '@material-ui/core'
 import FormDialog from '../components/Secteur/dialog';
-const initialValue = { nom: "", categorie: "", niveau: "", accompagnement: "", support: "", outil: ""}
+const initialValue = { nom: "", categorie: "", niveau: "", accompagnement: "", support: "", logicielle: "", plateform_spec: "", prix_min: "", prix_max: ""}
 
 function Secteur() {
   const [gridApi, setGridApi] = useState(null)
@@ -22,17 +22,19 @@ function Secteur() {
   };
   const url = `http://localhost:4000/secteur`
   const columnDefs = [
-    { headerName: "ID", field: "id" },
-    { headerName: "Nom", field: "nom", },
+    { headerName: "Secteur", field: "nom", },
     { headerName: "catégorie", field: "categorie", },
     { headerName: "Niveau", field: "niveau" },
     { headerName: "Accompagnement", field: "accompagnement" },
     { headerName: "Support", field: "support" },
-    { headerName: "Outil", field: "outil", },
+    { headerName: "Logiciel", field: "logicielle", },
+    { headerName: "Plateforme", field: "plateform_spec", },
+    { headerName: "TH min", field: "prix_min", },
+    { headerName: "TH max", field: "prix_max", },
     {
       headerName: "Actions", field: "id", cellRendererFramework: (params) => <div>
-        <Button variant="outlined" color="primary" onClick={() => handleUpdate(params.data)}>Update</Button>
-        <Button variant="outlined" color="secondary" onClick={() => handleDelete(params.value)}>Delete</Button>
+        <Button variant="outlined" color="primary" onClick={() => handleUpdate(params.data)}>U</Button>
+        <Button variant="outlined" color="secondary" onClick={() => handleDelete(params.value)}>D</Button>
       </div>
     }
   ]
@@ -61,7 +63,7 @@ function Secteur() {
   }
   //deleting a user
   const handleDelete = (id) => {
-    const confirm = window.confirm("Are you sure, you want to delete this row", id)
+    const confirm = window.confirm("Etes-vous sûr de supprimer cette ligne?", id)
     if (confirm) {
       fetch(url + `/${id}`, { method: "DELETE" }).then(resp => resp.json()).then(resp => getSecteur())
 
@@ -70,7 +72,7 @@ function Secteur() {
   const handleFormSubmit = () => {
     if (formData.id) {
       //updating a user 
-      const confirm = window.confirm("Are you sure, you want to update this row ?")
+      const confirm = window.confirm("Etes-vous sûr de modifier cette ligne?")
       confirm && fetch(url + `/${formData.id}`, {
         method: "PUT", body: JSON.stringify(formData), headers: {
           'content-type': "application/json"
@@ -102,10 +104,10 @@ function Secteur() {
   }
   return (
     <div className="App">
-      <h1 align="center">React-App</h1>
-      <h3>CRUD Operation with Json-server in ag-Grid</h3>
+      <h1 align="center">Secteur</h1>
+      <h3>Secteur de formation continue</h3>
       <Grid align="right">
-        <Button variant="contained" color="primary" onClick={handleClickOpen}>Add user</Button>
+        <Button variant="contained" color="primary" onClick={handleClickOpen}>Ajouter un secteur</Button>
       </Grid>
       <div className="ag-theme-alpine" style={{ height: '400px' }}>
         <AgGridReact

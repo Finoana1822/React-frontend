@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { TextField } from '@material-ui/core';
 
 export default function FormDialog({open,handleClose,data,onChange,handleFormSubmit}) {
- const {id,nom,categorie,niveau,accompagnement,support,outil}=data
+ const {id,nom,categorie,niveau,accompagnement,support,outil,logicielle,plateform_spec}=data
 
   return (
     <div>
@@ -18,23 +18,23 @@ export default function FormDialog({open,handleClose,data,onChange,handleFormSub
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{id?"Update user":"Create new user"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{id?"Modifié secteur":"Créer nouveau secteur"}</DialogTitle>
         <DialogContent>
          <form>
-             <TextField id="nom" value={nom} onChange={e=>onChange(e)} placeholder="Enter name" label="Name" variant="outlined" margin="dense" fullWidth />
-             <TextField id="categorie" value={categorie} onChange={e=>onChange(e)} placeholder="Enter email" label="Email" variant="outlined" margin="dense" fullWidth />
-             <TextField id="niveau" value={niveau} onChange={e=>onChange(e)} placeholder="Enter phone number" label="Phone Number" variant="outlined" margin="dense" fullWidth />
-             <TextField id="accompagnement" value={accompagnement} onChange={e=>onChange(e)} placeholder="Enter Date of birth" label="Date of Birth" variant="outlined" margin="dense" fullWidth />
-             <TextField id="support" value={support} onChange={e=>onChange(e)} placeholder="Enter name" label="Name" variant="outlined" margin="dense" fullWidth />
-             <TextField id="outil" value={outil} onChange={e=>onChange(e)} placeholder="Enter email" label="Email" variant="outlined" margin="dense" fullWidth />
+             <TextField id="nom" value={nom} onChange={e=>onChange(e)} placeholder="Entrer le secteur" label="Secteur" variant="outlined" margin="dense" fullWidth />
+             <TextField id="categorie" value={categorie} onChange={e=>onChange(e)} placeholder="Entrer la catégorie" label="Catégorie" variant="outlined" margin="dense" fullWidth />
+             <TextField id="niveau" value={niveau} onChange={e=>onChange(e)} placeholder="Entrer le Niveau" label="Niveau" variant="outlined" margin="dense" fullWidth />
+             <TextField id="accompagnement" value={accompagnement} onChange={e=>onChange(e)} placeholder="Accompagnement nécessaire" label="Accompagnement nécessaire" variant="outlined" margin="dense" fullWidth />
+             <TextField id="support" value={support} onChange={e=>onChange(e)} placeholder="Support exigé" label="Support" variant="outlined" margin="dense" fullWidth />
+             <TextField id="outil" value={outil} onChange={e=>onChange(e)} placeholder="Outil nécessaire" label="Outil nécessaire" variant="outlined" margin="dense" fullWidth />
+             <TextField id="logicielle" value={logicielle} onChange={e=>onChange(e)} placeholder="Logiciel de formation" label="Logiciel" variant="outlined" margin="dense" fullWidth />
+             <TextField id="plateform_spec" value={plateform_spec} onChange={e=>onChange(e)} placeholder="La plateforme spécifique" label="Plateforme" variant="outlined" margin="dense" fullWidth />
          </form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="secondary" variant="outlined">
-            Cancel
-          </Button>
+          <Button onClick={handleClose} color="secondary" variant="outlined">Fermer</Button>
           <Button  color="primary" onClick={()=>handleFormSubmit()} variant="contained">
-            {id?"Update":"Submit"}
+            {id?"Mofifier":"Envoyer"}
           </Button>
         </DialogActions>
       </Dialog>
