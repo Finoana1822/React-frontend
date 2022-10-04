@@ -20,7 +20,7 @@ function Secteur() {
     setOpen(false);
     setFormData(initialValue)
   };
-  const url = `http://localhost:4000/users`
+  const url = `http://localhost:4000/secteur`
   const columnDefs = [
     { headerName: "ID", field: "id" },
     { headerName: "Nom", field: "nom", },
@@ -38,11 +38,11 @@ function Secteur() {
   ]
   // calling getUsers function for first time 
   useEffect(() => {
-    getUsers()
+    getSecteur()
   }, [])
 
   //fetching user data from server
-  const getUsers = () => {
+  const getSecteur = () => {
     fetch(url).then(resp => resp.json()).then(resp => setTableData(resp))
   }
   const onChange = (e) => {
@@ -63,7 +63,7 @@ function Secteur() {
   const handleDelete = (id) => {
     const confirm = window.confirm("Are you sure, you want to delete this row", id)
     if (confirm) {
-      fetch(url + `/${id}`, { method: "DELETE" }).then(resp => resp.json()).then(resp => getUsers())
+      fetch(url + `/${id}`, { method: "DELETE" }).then(resp => resp.json()).then(resp => getSecteur())
 
     }
   }
@@ -78,7 +78,7 @@ function Secteur() {
       }).then(resp => resp.json())
         .then(resp => {
           handleClose()
-          getUsers()
+          getSecteur()
 
         })
     } else {
@@ -90,7 +90,7 @@ function Secteur() {
       }).then(resp => resp.json())
         .then(resp => {
           handleClose()
-          getUsers()
+          getSecteur()
         })
     }
   }
