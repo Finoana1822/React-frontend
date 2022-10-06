@@ -3,8 +3,9 @@ import '../styles/App.css';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-import { Grid, Button } from '@material-ui/core'
+import { Grid, Button } from '@material-ui/core';
 import FormDialog from '../components/Secteur/dialog';
+import {BsTrashFill, BsFillPencilFill} from 'react-icons/bs'
 const initialValue = { nom: "", categorie: "", niveau: "", accompagnement: "", support: "", logicielle: "", plateform_spec: "", prix_min: "", prix_max: ""}
 
 function Secteur() {
@@ -33,8 +34,8 @@ function Secteur() {
     { headerName: "TH max", field: "prix_max", },
     {
       headerName: "Actions", field: "id", cellRendererFramework: (params) => <div>
-        <Button variant="outlined" color="primary" onClick={() => handleUpdate(params.data)}>U</Button>
-        <Button variant="outlined" color="secondary" onClick={() => handleDelete(params.value)}>D</Button>
+        <Button color="primary" onClick={() => handleUpdate(params.data)}>{<BsFillPencilFill />}</Button>
+        <Button color="secondary" onClick={() => handleDelete(params.value)}>{<BsTrashFill />}</Button>
       </div>
     }
   ]

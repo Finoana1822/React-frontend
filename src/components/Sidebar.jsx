@@ -7,7 +7,7 @@ import {
   Menu,
   MenuItem,
   SidebarHeader,
-  SidebarFooter,
+  /*SidebarFooter*/
   SidebarContent,
 } from "react-pro-sidebar";
 
@@ -62,15 +62,14 @@ const Sidebar = () => {
               <MenuItem icon={<FaRegHeart />}>Catalogue</MenuItem>
               <MenuItem icon={<RiPencilLine />}>Formation</MenuItem>
               <MenuItem icon={<BiCog />}>Commande</MenuItem>
-              <MenuItem icon={<FaMonero />}>Vente</MenuItem>
               <MenuItem icon={<FaCalendar />}>Calendrier</MenuItem>
             </Menu>
           </SidebarContent>
-          <SidebarFooter>
+          {/*<SidebarFooter>
             <Menu iconShape="square">
               <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
             </Menu>
-          </SidebarFooter>
+          </SidebarFooter>*/}
         </ProSidebar>
       </div>
     </>

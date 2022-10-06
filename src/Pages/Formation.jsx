@@ -4,10 +4,11 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { Grid, Button } from '@material-ui/core'
-import FormDialog from '../components/Secteur/dialog';
-const initialValue = { nom: "", categorie: "", niveau: "", accompagnement: "", support: "", logicielle: "", plateform_spec: "", prix_min: "", prix_max: ""}
+import FormDialog from '../components/Formation/FormationForm'
+import {BsTrashFill, BsFillPencilFill} from 'react-icons/bs'
+const initialValue = { code: "", titre: "", categorie: "", nb_jour: "", nb_vente: "",nb_demande:"",cible:"", id_secteur:"",prix_min:"",prix_max:"", prix_affiche: ""}
 
-function Secteur() {
+function Formation() {
   const [gridApi, setGridApi] = useState(null)
   const [tableData, setTableData] = useState(null)
   const [open, setOpen] = React.useState(false);
@@ -20,31 +21,33 @@ function Secteur() {
     setOpen(false);
     setFormData(initialValue)
   };
-  const url = `http://localhost:4000/secteurs`
+  const url = `http://localhost:4000/formations`
   const columnDefs = [
-    { headerName: "Secteur", field: "nom", },
+    { headerName: "Code", field: "code", },
+    { headerName: "Titre", field: "titre", },
     { headerName: "catégorie", field: "categorie", },
-    { headerName: "Niveau", field: "niveau" },
-    { headerName: "Accompagnement", field: "accompagnement" },
-    { headerName: "Support", field: "support" },
-    { headerName: "Logiciel", field: "logicielle", },
-    { headerName: "Plateforme", field: "plateform_spec", },
-    { headerName: "TH min", field: "prix_min", },
-    { headerName: "TH max", field: "prix_max", },
+    { headerName: "Jour", field: "nb_jour" },
+    { headerName: "Vente", field: "nb_vente" },
+    { headerName: "Demande", field: "nb_demande" },
+    { headerName: "Cible", field: "cible", },
+    { headerName: "Secteur", field: "id_secteur", },
+    { headerName: "Prix min", field: "prix_min", },
+    { headerName: "Prix max", field: "prix_max", },
+    { headerName: "Total", field: "prix_affiche", },
     {
       headerName: "Actions", field: "id", cellRendererFramework: (params) => <div>
-        <Button variant="outlined" color="primary" onClick={() => handleUpdate(params.data)}>U</Button>
-        <Button variant="outlined" color="secondary" onClick={() => handleDelete(params.value)}>D</Button>
+        <Button color="primary" onClick={() => handleUpdate(params.data)}>{<BsFillPencilFill />}</Button>
+        <Button color="secondary" onClick={() => handleDelete(params.value)}>{<BsTrashFill />}</Button>
       </div>
     }
   ]
   // calling getUsers function for first time 
   useEffect(() => {
-    getSecteur()
+    getFormation()
   }, [])
 
   //fetching user data from server
-  const getSecteur = () => {
+  const getFormation = () => {
     fetch(url).then(resp => resp.json()).then(resp => setTableData(resp))
   }
   const onChange = (e) => {
@@ -65,7 +68,7 @@ function Secteur() {
   const handleDelete = (id) => {
     const confirm = window.confirm("Etes-vous sûr de supprimer cette ligne?", id)
     if (confirm) {
-      fetch(url + `/${id}`, { method: "DELETE" }).then(resp => resp.json()).then(resp => getSecteur())
+      fetch(url + `/${id}`, { method: "DELETE" }).then(resp => resp.json()).then(resp => getFormation())
 
     }
   }
@@ -80,7 +83,7 @@ function Secteur() {
       }).then(resp => resp.json())
         .then(resp => {
           handleClose()
-          getSecteur()
+          getFormation()
 
         })
     } else {
@@ -92,7 +95,7 @@ function Secteur() {
       }).then(resp => resp.json())
         .then(resp => {
           handleClose()
-          getSecteur()
+          getFormation()
         })
     }
   }
@@ -104,10 +107,9 @@ function Secteur() {
   }
   return (
     <div className="App">
-      <h1 align="center">Secteur</h1>
-      <h3>Secteur de formation continue</h3>
+      <h1 align="center">Formation</h1>
       <Grid align="right">
-        <Button variant="contained" color="primary" onClick={handleClickOpen}>Ajouter un secteur</Button>
+        <Button variant="contained" color="primary" onClick={handleClickOpen}>Ajouter une formation</Button>
       </Grid>
       <div className="ag-theme-alpine" style={{ height: '400px' }}>
         <AgGridReact
@@ -123,4 +125,4 @@ function Secteur() {
   );
 }
 
-export default Secteur;
+export default Formation;
