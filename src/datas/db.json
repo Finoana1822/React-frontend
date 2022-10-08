@@ -242,64 +242,45 @@
       "updated_at": "2022-09-28T15:19:07.000000Z"
     }
   ],
-  "commandes":[
+  "commandes": [
     {
-      "id":1,
-      "id_formation":16,
-      "id_custommer":"Pulse",
-      "nb_homme":5,
-      "nb_femme":5,
-      "date_debut":"2022-05-18",
-      "date_fin":"2022-05-30",
-      "status":"attente",
-      "payee":true,
+      "id": 1,
+      "id_formation": 16,
+      "id_custommer": "Pulse",
+      "nb_homme": 5,
+      "nb_femme": 5,
+      "date_debut": "2022-05-18",
+      "date_fin": "2022-05-30",
+      "status": "attente",
+      "payee": true,
       "prix_total": 2400000
     },
     {
-      "id":2,
-      "id_formation":18,
-      "id_custommer":"Ingenosia",
-      "nb_homme":5,
-      "nb_femme":7,
-      "date_debut":"2022-05-18",
-      "date_fin":"2022-05-30",
-      "status":"validé",
-      "payee":false,
+      "id": 2,
+      "id_formation": 18,
+      "id_custommer": "Ingenosia",
+      "nb_homme": 5,
+      "nb_femme": 7,
+      "date_debut": "2022-05-18",
+      "date_fin": "2022-05-30",
+      "status": "validé",
+      "payee": false,
       "prix_total": 2400000
     },
     {
-      "id":2,
-      "id_formation":18,
-      "id_custommer":"Novity",
-      "nb_homme":5,
-      "nb_femme":7,
-      "date_debut":"2022-12-18",
-      "date_fin":"2022-12-30",
-      "status":"refusé",
-      "payee":false,
+      "id": 2,
+      "id_formation": 18,
+      "id_custommer": "Novity",
+      "nb_homme": 5,
+      "nb_femme": 7,
+      "date_debut": "2022-12-18",
+      "date_fin": "2022-12-30",
+      "status": "refusé",
+      "payee": false,
       "prix_total": 2400000
     }
   ],
   "secteurs": [
-    {
-      "id": 1,
-      "nom": "transversale",
-      "categorie": "A",
-      "niveau": "bas",
-      "accompagnement": "basique",
-      "support": "physique",
-      "outil": "rien",
-      "logicielle": "libre",
-      "platform_spec": 0,
-      "prix_min": 32000,
-      "prix_max": 35000,
-      "created_at": "2022-09-27 10:45:47",
-      "updated_at": "2022-09-27 10:45:47",
-      "h_prix_min": "80000",
-      "h_prix_max": "87500",
-      "j_prix_min": 480000,
-      "j_prix_max": 525000
-    },
     {
       "id": 2,
       "nom": "transversale",
@@ -375,19 +356,6 @@
       "h_prix_max": "137500",
       "j_prix_min": 750000,
       "j_prix_max": 825000
-    },
-    {
-      "nom": "sfdfd",
-      "categorie": "qsdqsd",
-      "niveau": "qsfqsf",
-      "accompagnement": "qfsfqf",
-      "support": "qsfdsf",
-      "logicielle": "qsfqsf",
-      "plateform_spec": "qsfqsfsq",
-      "prix_min": "",
-      "prix_max": "",
-      "outil": "qsFqsf",
-      "id": 7
     }
   ],
   "supports": [

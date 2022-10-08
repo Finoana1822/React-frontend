@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { forwardRef } from 'react';
-//import Avatar from 'react-avatar';
+import Avatar from 'react-avatar';
 import Grid from '@material-ui/core/Grid'
 
 import MaterialTable from "material-table";
@@ -43,7 +43,7 @@ const tableIcons = {
 };
 
 const api = axios.create({
-  baseURL: `http://localhost:4000/secteurs`
+  baseURL: `https://reqres.in/api`
 })
 
 
@@ -52,32 +52,30 @@ function validateEmail(email){
   return re.test(String(email).toLowerCase());
 }
 
-function Secteur() {
+function Test() {
 
   var columns = [
-    { title: "Nom", field: "nom" },
-    { title: "Catégorie", field: "categorie" },
-    { title: "Niveau", field: "niveau" },
-    { title: "Accompagnement Nécessaire", field: 'accompagnement' },
-    { title: "Support", field: "support" },
-    { title: "Outil", field: "outil" },
-    { title: "Logiciel", field: "logicielle" },
-    { title: "Plateforme Spécifique", field: "platform_spec" },
-    { title: "TH Min", field: "prix_min" },
-    { title: "TH Max", field: "prix_max" },
+    {title: "id", field: "id", hidden: true},
+    {title: "Avatar", render: rowData => <Avatar maxInitials={1} size={40} round={true} name={rowData === undefined ? " " : rowData.first_name} />  },
+    {title: "First name", field: "first_name"},
+    {title: "Last name", field: "last_name"},
+    {title: "email", field: "email"}
   ]
   const [data, setData] = useState([]); //table data
-
-  const [donnee, setDonne] = useState(null)
-  fetch('http://localhost:4000/secteurs').then((res)=>{
-   return res.json()
-  }).then((d)=>{
-    setDonne(d)
-  })
 
   //for error handling
   const [iserror, setIserror] = useState(false)
   const [errorMessages, setErrorMessages] = useState([])
+
+  useEffect(() => { 
+    api.get("/users")
+        .then(res => {               
+            setData(res.data.data)
+         })
+         .catch(error=>{
+             console.log("Error")
+         })
+  }, [])
 
   const handleRowUpdate = (newData, oldData, resolve) => {
     //validation
@@ -93,7 +91,7 @@ function Secteur() {
     }
 
     if(errorList.length < 1){
-      api.patch("/secteurs/"+newData.id, newData)
+      api.patch("/users/"+newData.id, newData)
       .then(res => {
         const dataUpdate = [...data];
         const index = oldData.tableData.id;
@@ -132,7 +130,7 @@ function Secteur() {
     }
 
     if(errorList.length < 1){ //no error
-      api.post("/secteurs", newData)
+      api.post("/users", newData)
       .then(res => {
         let dataToAdd = [...data];
         dataToAdd.push(newData);
@@ -157,7 +155,7 @@ function Secteur() {
 
   const handleRowDelete = (oldData, resolve) => {
     
-    api.delete("/secteurs/"+oldData.id)
+    api.delete("/users/"+oldData.id)
       .then(res => {
         const dataDelete = [...data];
         const index = oldData.tableData.id;
@@ -174,12 +172,11 @@ function Secteur() {
 
 
   return (
-    
     <div className="App">
-      { donnee &&
+      
       <Grid container spacing={1}>
           <Grid item xs={3}></Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
           <div>
             {iserror && 
               <Alert severity="error">
@@ -192,11 +189,10 @@ function Secteur() {
             <MaterialTable
               title="User data from remote source"
               columns={columns}
-              data={donnee}
+              data={data}
               icons={tableIcons}
               options={
                {
-                filterRowStyle: true,
                 filtering:true,
                 exportAllData:true
                }
@@ -220,9 +216,8 @@ function Secteur() {
           </Grid>
           <Grid item xs={3}></Grid>
         </Grid>
-}
     </div>
   );
 }
 
-export default Secteur;
+export default Test;

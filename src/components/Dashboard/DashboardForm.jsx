@@ -55,7 +55,7 @@ import {
    
   
     return (
-        <div className='App'>
+        <div className='Dash'>
           <Bar options={chartOptions} data={chartData}  /> 
         </div>
     );
