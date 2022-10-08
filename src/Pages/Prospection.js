@@ -42,25 +42,17 @@ const tableIcons = {
 };
 
 const api = axios.create({
-  baseURL: `http://localhost:4000/commandes`
+  baseURL: `http://localhost:4000/prospections`
 })
 
-const Commande= () => {
-
+const Prospection = () => {
   var columns = [
-    { title: "Formation", field: "id_formation" },
-    { title: "Client", field: "id_custommer" },
-    { title: "Nombre Homme", field: 'nb_homme' },
-    { title: "Nombre Femme", field: "nb_femme" },
-    { title: "Date Début", field: "date_debut" },
-    { title: "Date Fin", field: "date_fin" },
-    { title: "Status", field: "status" },
-    { title: "Payement", field: "payee" },
-    { title: "Total", field: "prix_total" },
+    { title: "Date", field: "date" },
+    { title: "Cible", field: "cible" },
   ]
   
   const [donnee, setDonne] = useState(null)
-  fetch('http://localhost:4000/commandes').then((res)=>{
+  fetch('http://localhost:4000/prospections').then((res)=>{
    return res.json()
   }).then((d)=>{
     setDonne(d)
@@ -75,36 +67,16 @@ const Commande= () => {
   const handleRowUpdate = (newData, oldData, resolve) => {
     //validation
     let errorList = []
-    if(newData.id_formation === ""){
+    if(newData.date === ""){
       errorList.push("Please enter first name")
     }
-    if(newData.id_custommer === ""){
+    if(newData.cible === ""){
       errorList.push("Please enter last name")
     }
-    if(newData.nb_homme === ""){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.nb_femme === ""){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.date_debut === ""){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.date_fin === ""){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.status === ""){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.payee === ""){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.prix_total === ""){
-      errorList.push("Please enter a valid email")
-    }
+    
     
     if(errorList.length < 1){
-      api.patch("/commandes/"+newData.id, newData)
+      api.patch("/prospections/"+newData.id, newData)
       .then(res => {
         const dataUpdate = [...donnee];
         const index = oldData.tableData.id;
@@ -132,35 +104,14 @@ const Commande= () => {
   const handleRowAdd = (newData, resolve) => {
     //validation
     let errorList = []
-    if(newData.id_formation === undefined){
+    if(newData.date === undefined){
       errorList.push("Please enter first name")
     }
-    if(newData.id_custommer === undefined){
+    if(newData.cible === undefined){
       errorList.push("Please enter last name")
-    }
-    if(newData.nb_homme === undefined){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.nb_femme === undefined){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.date_debut === undefined){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.date_fin === undefined){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.status === undefined){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.payee === undefined){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.prix_total === undefined){
-      errorList.push("Please enter a valid email")
-    }
+    
     if(errorList.length < 1){ //no error
-      api.post("/commandes", newData)
+      api.post("/prospections", newData)
       .then(res => {
         let dataToAdd = [...donnee];
         dataToAdd.push(newData);
@@ -185,7 +136,7 @@ const Commande= () => {
 
   //Delete Data
   const handleRowDelete = (oldData, resolve) => {
-    api.delete("/commandes/"+oldData.id)
+    api.delete("/prospections/"+oldData.id)
       .then(res => {
         const dataDelete = [...donnee];
         const index = oldData.tableData.id;
@@ -200,58 +151,56 @@ const Commande= () => {
       })
   }
 
-
-  return (
-    
+  return (  
     <div className="App">
-      <h1>Hello</h1>
-      { donnee &&
-      <Grid container spacing={1}>
-          <Grid item xs={3}></Grid>
-          <Grid item xs={12}>
-          <div>
-            {iserror && 
-              <Alert severity="error">
-                  {errorMessages.map((msg, i) => {
-                      return <div key={i}>{msg}</div>
-                  })}
-              </Alert>
-            }       
-          </div>
-            <MaterialTable
-              title="User data from remote source"
-              columns={columns}
-              data={donnee}
-              icons={tableIcons}
-              options={
-               {
-                filterRowStyle: true,
-                filtering:true,
-                exportAllData:true
-               }
-              }
-              editable={{
-                onRowUpdate: (newData, oldData) =>
-                  new Promise((resolve) => {
-                      handleRowUpdate(newData, oldData, resolve);
-                      
-                  }),
-                onRowAdd: (newData) =>
-                  new Promise((resolve) => {
-                    handleRowAdd(newData, resolve)
-                  }),
-                onRowDelete: (oldData) =>
-                  new Promise((resolve) => {
-                    handleRowDelete(oldData, resolve)
-                  }),
-              }}
-            />
-          </Grid>
-          <Grid item xs={3}></Grid>
-        </Grid>
-      }
+<h1>Hello</h1>
+{ donnee &&
+<Grid container spacing={1}>
+    <Grid item xs={3}></Grid>
+    <Grid item xs={12}>
+    <div>
+      {iserror && 
+        <Alert severity="error">
+            {errorMessages.map((msg, i) => {
+                return <div key={i}>{msg}</div>
+            })}
+        </Alert>
+      }       
     </div>
+      <MaterialTable
+        title="User data from remote source"
+        columns={columns}
+        data={donnee}
+        icons={tableIcons}
+        options={
+         {
+          filterRowStyle: true,
+          filtering:true,
+          exportAllData:true
+         }
+        }
+        editable={{
+          onRowUpdate: (newData, oldData) =>
+            new Promise((resolve) => {
+                handleRowUpdate(newData, oldData, resolve);
+                
+            }),
+          onRowAdd: (newData) =>
+            new Promise((resolve) => {
+              handleRowAdd(newData, resolve)
+            }),
+          onRowDelete: (oldData) =>
+            new Promise((resolve) => {
+              handleRowDelete(oldData, resolve)
+            }),
+        }}
+      />
+    </Grid>
+    <Grid item xs={3}></Grid>
+  </Grid>
+}
+</div>
   );
 }
-
-export default Commande;
+ 
+export default Prospection;

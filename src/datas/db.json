@@ -72,6 +72,19 @@
       "id_formation": ""
     }
   ],
+  "catalogues":[
+    {
+      "id":"",
+      "catalogue":"",
+      "id_formation":"",
+      "code":"",
+      "prerequis":"",
+      "duree":"",
+      "cible":"",
+      "prix_min":"",
+      "prix_max":""
+    }
+  ],
   "formations": [
     {
       "id": 16,

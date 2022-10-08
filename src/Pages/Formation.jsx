@@ -1,126 +1,258 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/App.css';
-import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-import { Grid, Button } from '@material-ui/core'
-import FormDialog from '../components/Formation/FormationForm'
-import {BsTrashFill, BsFillPencilFill} from 'react-icons/bs'
-const initialValue = { code: "", titre: "", categorie: "", nb_jour: "", nb_vente: "",nb_demande:"",cible:"", id_secteur:"",prix_min:"",prix_max:"", prix_affiche: ""}
+import { forwardRef } from 'react';
+import Grid from '@material-ui/core/Grid'
 
-function Formation() {
-  const [gridApi, setGridApi] = useState(null)
-  const [tableData, setTableData] = useState(null)
-  const [open, setOpen] = React.useState(false);
-  const [formData, setFormData] = useState(initialValue)
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+import MaterialTable from "material-table";
+import AddBox from '@material-ui/icons/AddBox';
+import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import Check from '@material-ui/icons/Check';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import Clear from '@material-ui/icons/Clear';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import Edit from '@material-ui/icons/Edit';
+import FilterList from '@material-ui/icons/FilterList';
+import FirstPage from '@material-ui/icons/FirstPage';
+import LastPage from '@material-ui/icons/LastPage';
+import Remove from '@material-ui/icons/Remove';
+import SaveAlt from '@material-ui/icons/SaveAlt';
+import Search from '@material-ui/icons/Search';
+import ViewColumn from '@material-ui/icons/ViewColumn';
+import axios from 'axios'
+import Alert from '@material-ui/lab/Alert';
 
-  const handleClose = () => {
-    setOpen(false);
-    setFormData(initialValue)
-  };
-  const url = `http://localhost:4000/formations`
-  const columnDefs = [
-    { headerName: "Code", field: "code", },
-    { headerName: "Titre", field: "titre", },
-    { headerName: "catégorie", field: "categorie", },
-    { headerName: "Jour", field: "nb_jour" },
-    { headerName: "Vente", field: "nb_vente" },
-    { headerName: "Demande", field: "nb_demande" },
-    { headerName: "Cible", field: "cible", },
-    { headerName: "Secteur", field: "id_secteur", },
-    { headerName: "Prix min", field: "prix_min", },
-    { headerName: "Prix max", field: "prix_max", },
-    { headerName: "Total", field: "prix_affiche", },
-    {
-      headerName: "Actions", field: "id", cellRendererFramework: (params) => <div>
-        <Button color="primary" onClick={() => handleUpdate(params.data)}>{<BsFillPencilFill />}</Button>
-        <Button color="secondary" onClick={() => handleDelete(params.value)}>{<BsTrashFill />}</Button>
-      </div>
-    }
+const tableIcons = {
+  Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+  Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
+  Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+  Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
+  DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+  Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
+  Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+  Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+  FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+  LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+  NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+  PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
+  ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+  Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+  SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
+  ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
+  ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
+};
+
+const api = axios.create({
+  baseURL: `http://localhost:4000/formations`
+})
+
+const Formation = () => {
+
+  var columns = [
+    { title: "Code", field: "code" },
+    { title: "Titre", field: "titre" },
+    { title: "Catégorie", field: "categorie" },
+    { title: "Durée", field: 'nb_jour' },
+    { title: "Vente", field: "nb_vente" },
+    { title: "Demande", field: "nb_demande" },
+    { title: "Cible", field: "cible" },
+    { title: "Secteur", field: "id_secteur" },
+    { title: "Prix Min", field: "prix_min" },
+    { title: "Prix Max", field: "prix_max" },
+    { title: "Prix Total", field: "prix_affiche" },
   ]
-  // calling getUsers function for first time 
-  useEffect(() => {
-    getFormation()
-  }, [])
+  
+  const [donnee, setDonne] = useState(null)
+  fetch('http://localhost:4000/formations').then((res)=>{
+   return res.json()
+  }).then((d)=>{
+    setDonne(d)
+  })
 
-  //fetching user data from server
-  const getFormation = () => {
-    fetch(url).then(resp => resp.json()).then(resp => setTableData(resp))
-  }
-  const onChange = (e) => {
-    const { value, id } = e.target
-    // console.log(value,id)
-    setFormData({ ...formData, [id]: value })
-  }
-  const onGridReady = (params) => {
-    setGridApi(params)
-  }
+  //for error handling
+  const [iserror, setIserror] = useState(false)
+  const [errorMessages, setErrorMessages] = useState([])
 
-  // setting update row data to form data and opening pop up window
-  const handleUpdate = (oldData) => {
-    setFormData(oldData)
-    handleClickOpen()
-  }
-  //deleting a user
-  const handleDelete = (id) => {
-    const confirm = window.confirm("Etes-vous sûr de supprimer cette ligne?", id)
-    if (confirm) {
-      fetch(url + `/${id}`, { method: "DELETE" }).then(resp => resp.json()).then(resp => getFormation())
 
+  //Modification de la ligne
+  const handleRowUpdate = (newData, oldData, resolve) => {
+    //validation
+    let errorList = []
+    if(newData.code === ""){
+      errorList.push("Please enter first name")
+    }
+    if(newData.titre === ""){
+      errorList.push("Please enter last name")
+    }
+    if(newData.categorie === ""){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.accompagnement === ""){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.support === ""){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.outil === ""){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.logicielle === ""){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.prix_min === ""){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.prix_max === ""){
+      errorList.push("Please enter a valid email")
+    }
+    
+    if(errorList.length < 1){
+      api.patch("/secteurs/"+newData.id, newData)
+      .then(res => {
+        const dataUpdate = [...donnee];
+        const index = oldData.tableData.id;
+        dataUpdate[index] = newData;
+        setDonne([...dataUpdate]);
+        resolve()
+        setIserror(false)
+        setErrorMessages([])
+      })
+      .catch(error => {
+        setErrorMessages(["Update failed! Server error"])
+        setIserror(true)
+        resolve()
+        
+      })
+    }else{
+      setErrorMessages(errorList)
+      setIserror(true)
+      resolve()
     }
   }
-  const handleFormSubmit = () => {
-    if (formData.id) {
-      //updating a user 
-      const confirm = window.confirm("Etes-vous sûr de modifier cette ligne?")
-      confirm && fetch(url + `/${formData.id}`, {
-        method: "PUT", body: JSON.stringify(formData), headers: {
-          'content-type': "application/json"
-        }
-      }).then(resp => resp.json())
-        .then(resp => {
-          handleClose()
-          getFormation()
 
-        })
-    } else {
-      // adding new user
-      fetch(url, {
-        method: "POST", body: JSON.stringify(formData), headers: {
-          'content-type': "application/json"
-        }
-      }).then(resp => resp.json())
-        .then(resp => {
-          handleClose()
-          getFormation()
-        })
+
+  //Add Data 
+  const handleRowAdd = (newData, resolve) => {
+    //validation
+    let errorList = []
+    if(newData.nom === undefined){
+      errorList.push("Please enter first name")
     }
+    if(newData.categorie === undefined){
+      errorList.push("Please enter last name")
+    }
+    if(newData.niveau === undefined){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.accompagnement === undefined){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.support === undefined){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.outil === undefined){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.logicielle === undefined){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.prix_min === undefined){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.prix_max === undefined){
+      errorList.push("Please enter a valid email")
+    }
+
+    if(errorList.length < 1){ //no error
+      api.post("/secteurs", newData)
+      .then(res => {
+        let dataToAdd = [...donnee];
+        dataToAdd.push(newData);
+        setDonne(dataToAdd);
+        resolve()
+        setErrorMessages([])
+        setIserror(false)
+      })
+      .catch(error => {
+        setErrorMessages(["Cannot add data. Server error!"])
+        setIserror(true)
+        resolve()
+      })
+    }else{
+      setErrorMessages(errorList)
+      setIserror(true)
+      resolve()
+    }
+
+    
   }
 
-  const defaultColDef = {
-    sortable: true,
-    flex: 1, filter: true,
-    floatingFilter: true
+  //Delete Data
+  const handleRowDelete = (oldData, resolve) => {
+    api.delete("/secteurs/"+oldData.id)
+      .then(res => {
+        const dataDelete = [...donnee];
+        const index = oldData.tableData.id;
+        dataDelete.splice(index, 1);
+        setDonne([...dataDelete]);
+        resolve()
+      })
+      .catch(error => {
+        setErrorMessages(["Delete failed! Server error"])
+        setIserror(true)
+        resolve()
+      })
   }
+
+
   return (
+    
     <div className="App">
-      <h1 align="center">Formation</h1>
-      <Grid align="right">
-        <Button variant="contained" color="primary" onClick={handleClickOpen}>Ajouter une formation</Button>
-      </Grid>
-      <div className="ag-theme-alpine" style={{ height: '400px' }}>
-        <AgGridReact
-          rowData={tableData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          onGridReady={onGridReady}
-        />
-      </div>
-      <FormDialog open={open} handleClose={handleClose}
-        data={formData} onChange={onChange} handleFormSubmit={handleFormSubmit} />
+      <h1>Hello</h1>
+      { donnee &&
+      <Grid container spacing={1}>
+          <Grid item xs={3}></Grid>
+          <Grid item xs={12}>
+          <div>
+            {iserror && 
+              <Alert severity="error">
+                  {errorMessages.map((msg, i) => {
+                      return <div key={i}>{msg}</div>
+                  })}
+              </Alert>
+            }       
+          </div>
+            <MaterialTable
+              title="User data from remote source"
+              columns={columns}
+              data={donnee}
+              icons={tableIcons}
+              options={
+               {
+                filterRowStyle: true,
+                filtering:true,
+                exportAllData:true
+               }
+              }
+              editable={{
+                onRowUpdate: (newData, oldData) =>
+                  new Promise((resolve) => {
+                      handleRowUpdate(newData, oldData, resolve);
+                      
+                  }),
+                onRowAdd: (newData) =>
+                  new Promise((resolve) => {
+                    handleRowAdd(newData, resolve)
+                  }),
+                onRowDelete: (oldData) =>
+                  new Promise((resolve) => {
+                    handleRowDelete(oldData, resolve)
+                  }),
+              }}
+            />
+          </Grid>
+          <Grid item xs={3}></Grid>
+        </Grid>
+      }
     </div>
   );
 }

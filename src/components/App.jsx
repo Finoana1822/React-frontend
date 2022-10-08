@@ -7,9 +7,9 @@ import Catalogue from '../Pages/Catalogue';
 import Formation from '../Pages/Formation';
 import Commande from '../Pages/Commande';
 import Calendrier from '../Pages/Calendrier';
-import Test from '../Test/Test';
+/*import Test from '../Test/Test';
 import TestTable from '../TestTable/TestTable';
-import TestTableau from '../TestTableau/TestTableau';
+import TestTableau from '../TestTableau/TestTableau';*/
 
 function App() {
   return (
@@ -18,9 +18,9 @@ function App() {
       <Routes>
           <Route path='/' element = { <Navigate to={'/dashBoard'}/>}/>
           <Route path='/dashBoard' element = { <DashBoard/>}/>
-          <Route path='/test' element = { <Test/>}/>
+          {/*<Route path='/test' element = { <Test/>}/>
           <Route path='/testtable' element = { <TestTable/>}/>
-          <Route path='/testtableau' element = { <TestTableau/>}/>
+          <Route path='/testtableau' element = { <TestTableau/>}/>*/}
           <Route path='/secteur' element = {<Secteur />} />
           <Route path='/catalogue' element = {<Catalogue />} />
           <Route path='/formation' element = {<Formation />} />

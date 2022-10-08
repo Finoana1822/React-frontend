@@ -42,25 +42,19 @@ const tableIcons = {
 };
 
 const api = axios.create({
-  baseURL: `http://localhost:4000/commandes`
+  baseURL: `http://localhost:4000/supports`
 })
 
-const Commande= () => {
+const Support = () => {
 
   var columns = [
-    { title: "Formation", field: "id_formation" },
-    { title: "Client", field: "id_custommer" },
-    { title: "Nombre Homme", field: 'nb_homme' },
-    { title: "Nombre Femme", field: "nb_femme" },
-    { title: "Date Début", field: "date_debut" },
-    { title: "Date Fin", field: "date_fin" },
-    { title: "Status", field: "status" },
-    { title: "Payement", field: "payee" },
-    { title: "Total", field: "prix_total" },
+    { title: "Titre", field: "titre" },
+    { title: "Descrption", field: "descrption" },
+    { title: "Type", field: "type" },
   ]
   
   const [donnee, setDonne] = useState(null)
-  fetch('http://localhost:4000/commandes').then((res)=>{
+  fetch('http://localhost:4000/supports').then((res)=>{
    return res.json()
   }).then((d)=>{
     setDonne(d)
@@ -75,36 +69,18 @@ const Commande= () => {
   const handleRowUpdate = (newData, oldData, resolve) => {
     //validation
     let errorList = []
-    if(newData.id_formation === ""){
+    if(newData.titre === ""){
       errorList.push("Please enter first name")
     }
-    if(newData.id_custommer === ""){
+    if(newData.description === ""){
       errorList.push("Please enter last name")
     }
-    if(newData.nb_homme === ""){
+    if(newData.type === ""){
       errorList.push("Please enter a valid email")
     }
-    if(newData.nb_femme === ""){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.date_debut === ""){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.date_fin === ""){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.status === ""){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.payee === ""){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.prix_total === ""){
-      errorList.push("Please enter a valid email")
-    }
-    
+  
     if(errorList.length < 1){
-      api.patch("/commandes/"+newData.id, newData)
+      api.patch("/supports/"+newData.id, newData)
       .then(res => {
         const dataUpdate = [...donnee];
         const index = oldData.tableData.id;
@@ -132,35 +108,18 @@ const Commande= () => {
   const handleRowAdd = (newData, resolve) => {
     //validation
     let errorList = []
-    if(newData.id_formation === undefined){
+    if(newData.titre === undefined){
       errorList.push("Please enter first name")
     }
-    if(newData.id_custommer === undefined){
+    if(newData.description === undefined){
       errorList.push("Please enter last name")
     }
-    if(newData.nb_homme === undefined){
+    if(newData.type === undefined){
       errorList.push("Please enter a valid email")
     }
-    if(newData.nb_femme === undefined){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.date_debut === undefined){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.date_fin === undefined){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.status === undefined){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.payee === undefined){
-      errorList.push("Please enter a valid email")
-    }
-    if(newData.prix_total === undefined){
-      errorList.push("Please enter a valid email")
-    }
+
     if(errorList.length < 1){ //no error
-      api.post("/commandes", newData)
+      api.post("/supports", newData)
       .then(res => {
         let dataToAdd = [...donnee];
         dataToAdd.push(newData);
@@ -185,7 +144,7 @@ const Commande= () => {
 
   //Delete Data
   const handleRowDelete = (oldData, resolve) => {
-    api.delete("/commandes/"+oldData.id)
+    api.delete("/supports/"+oldData.id)
       .then(res => {
         const dataDelete = [...donnee];
         const index = oldData.tableData.id;
@@ -254,4 +213,4 @@ const Commande= () => {
   );
 }
 
-export default Commande;
+export default Support;

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { forwardRef } from 'react';
-//import Avatar from 'react-avatar';
 import Grid from '@material-ui/core/Grid'
 
 import MaterialTable from "material-table";
@@ -46,12 +45,6 @@ const api = axios.create({
   baseURL: `http://localhost:4000/secteurs`
 })
 
-
-function validateEmail(email){
-  const re = /^((?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]))$/;
-  return re.test(String(email).toLowerCase());
-}
-
 function Secteur() {
 
   var columns = [
@@ -66,8 +59,7 @@ function Secteur() {
     { title: "TH Min", field: "prix_min" },
     { title: "TH Max", field: "prix_max" },
   ]
-  const [data, setData] = useState([]); //table data
-
+  
   const [donnee, setDonne] = useState(null)
   fetch('http://localhost:4000/secteurs').then((res)=>{
    return res.json()
@@ -79,26 +71,46 @@ function Secteur() {
   const [iserror, setIserror] = useState(false)
   const [errorMessages, setErrorMessages] = useState([])
 
+
+  //Modification de la ligne
   const handleRowUpdate = (newData, oldData, resolve) => {
     //validation
     let errorList = []
-    if(newData.first_name === ""){
+    if(newData.nom === ""){
       errorList.push("Please enter first name")
     }
-    if(newData.last_name === ""){
+    if(newData.categorie === ""){
       errorList.push("Please enter last name")
     }
-    if(newData.email === "" || validateEmail(newData.email) === false){
+    if(newData.niveau === ""){
       errorList.push("Please enter a valid email")
     }
-
+    if(newData.accompagnement === ""){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.support === ""){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.outil === ""){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.logicielle === ""){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.prix_min === ""){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.prix_max === ""){
+      errorList.push("Please enter a valid email")
+    }
+    
     if(errorList.length < 1){
       api.patch("/secteurs/"+newData.id, newData)
       .then(res => {
-        const dataUpdate = [...data];
+        const dataUpdate = [...donnee];
         const index = oldData.tableData.id;
         dataUpdate[index] = newData;
-        setData([...dataUpdate]);
+        setDonne([...dataUpdate]);
         resolve()
         setIserror(false)
         setErrorMessages([])
@@ -113,30 +125,48 @@ function Secteur() {
       setErrorMessages(errorList)
       setIserror(true)
       resolve()
-
     }
-    
   }
 
+
+  //Add Data 
   const handleRowAdd = (newData, resolve) => {
     //validation
     let errorList = []
-    if(newData.first_name === undefined){
+    if(newData.nom === undefined){
       errorList.push("Please enter first name")
     }
-    if(newData.last_name === undefined){
+    if(newData.categorie === undefined){
       errorList.push("Please enter last name")
     }
-    if(newData.email === undefined || validateEmail(newData.email) === false){
+    if(newData.niveau === undefined){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.accompagnement === undefined){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.support === undefined){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.outil === undefined){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.logicielle === undefined){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.prix_min === undefined){
+      errorList.push("Please enter a valid email")
+    }
+    if(newData.prix_max === undefined){
       errorList.push("Please enter a valid email")
     }
 
     if(errorList.length < 1){ //no error
       api.post("/secteurs", newData)
       .then(res => {
-        let dataToAdd = [...data];
+        let dataToAdd = [...donnee];
         dataToAdd.push(newData);
-        setData(dataToAdd);
+        setDonne(dataToAdd);
         resolve()
         setErrorMessages([])
         setIserror(false)
@@ -155,14 +185,14 @@ function Secteur() {
     
   }
 
+  //Delete Data
   const handleRowDelete = (oldData, resolve) => {
-    
     api.delete("/secteurs/"+oldData.id)
       .then(res => {
-        const dataDelete = [...data];
+        const dataDelete = [...donnee];
         const index = oldData.tableData.id;
         dataDelete.splice(index, 1);
-        setData([...dataDelete]);
+        setDonne([...dataDelete]);
         resolve()
       })
       .catch(error => {
@@ -176,6 +206,7 @@ function Secteur() {
   return (
     
     <div className="App">
+      <h1>Hello</h1>
       { donnee &&
       <Grid container spacing={1}>
           <Grid item xs={3}></Grid>
@@ -220,7 +251,7 @@ function Secteur() {
           </Grid>
           <Grid item xs={3}></Grid>
         </Grid>
-}
+      }
     </div>
   );
 }
