@@ -25,7 +25,7 @@ function App() {
           <Route path='/catalogue' element = {<Catalogue />} />
           <Route path='/formation' element = {<Formation />} />
           <Route path='/commande' element = {<Commande />} />
-          <Route path='/calendrier' element = {<Calendrier />} />
+          <Route path='/calendrier/*' element = {<Calendrier />} />
       </Routes>
     </div>
   );
