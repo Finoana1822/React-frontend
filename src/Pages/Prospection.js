@@ -150,57 +150,57 @@ const Prospection = () => {
         resolve()
       })
   }
-
-  return (  
-    <div className="App">
-<h1>Hello</h1>
-{ donnee &&
-<Grid container spacing={1}>
-    <Grid item xs={3}></Grid>
-    <Grid item xs={12}>
-    <div>
-      {iserror && 
-        <Alert severity="error">
-            {errorMessages.map((msg, i) => {
-                return <div key={i}>{msg}</div>
-            })}
-        </Alert>
-      }       
-    </div>
-      <MaterialTable
-        title="User data from remote source"
-        columns={columns}
-        data={donnee}
-        icons={tableIcons}
-        options={
-         {
-          filterRowStyle: true,
-          filtering:true,
-          exportAllData:true
-         }
-        }
-        editable={{
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve) => {
-                handleRowUpdate(newData, oldData, resolve);
-                
-            }),
-          onRowAdd: (newData) =>
-            new Promise((resolve) => {
-              handleRowAdd(newData, resolve)
-            }),
-          onRowDelete: (oldData) =>
-            new Promise((resolve) => {
-              handleRowDelete(oldData, resolve)
-            }),
-        }}
-      />
+  }
+  return(
+      <div className="App">
+  <h1>Hello</h1>
+  { donnee &&
+  <Grid container spacing={1}>
+      <Grid item xs={3}></Grid>
+      <Grid item xs={12}>
+      <div>
+        {iserror && 
+          <Alert severity="error">
+              {errorMessages.map((msg, i) => {
+                  return <div key={i}>{msg}</div>
+              })}
+          </Alert>
+        }       
+      </div>
+        <MaterialTable
+          title="User data from remote source"
+          columns={columns}
+          data={donnee}
+          icons={tableIcons}
+          options={
+          {
+            filterRowStyle: true,
+            filtering:true,
+            exportAllData:true
+          }
+          }
+          editable={{
+            onRowUpdate: (newData, oldData) =>
+              new Promise((resolve) => {
+                  handleRowUpdate(newData, oldData, resolve);
+                  
+              }),
+            onRowAdd: (newData) =>
+              new Promise((resolve) => {
+                handleRowAdd(newData, resolve)
+              }),
+            onRowDelete: (oldData) =>
+              new Promise((resolve) => {
+                handleRowDelete(oldData, resolve)
+              }),
+          }}
+        />
+      </Grid>
+      <Grid item xs={3}></Grid>
     </Grid>
-    <Grid item xs={3}></Grid>
-  </Grid>
-}
-</div>
-  );
+  }
+  </div>
+  )
 }
  
 export default Prospection;
